@@ -10,6 +10,7 @@
 // Type definition for runtime config
 interface RuntimeConfig {
   VITE_SPOTIFY_CLIENT_ID: string;
+  VITE_SPOTIFY_CLIENT_SECRET: string;
   VITE_LYRICS_API_BASE: string;
 }
 
@@ -38,5 +39,6 @@ export const getConfig = (key: keyof RuntimeConfig): string => {
  */
 export const getAllConfig = (): RuntimeConfig => ({
   VITE_SPOTIFY_CLIENT_ID: getConfig('VITE_SPOTIFY_CLIENT_ID'),
+  VITE_SPOTIFY_CLIENT_SECRET: getConfig('VITE_SPOTIFY_CLIENT_SECRET'),
   VITE_LYRICS_API_BASE: getConfig('VITE_LYRICS_API_BASE'),
 });

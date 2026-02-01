@@ -116,15 +116,15 @@ export class SpotifyApiError extends Error {
 }
 
 /**
- * Get Spotify credentials from localStorage or environment
+ * Get Spotify credentials from environment variables
  */
 const getCredentials = (): { clientId: string; clientSecret: string } => {
-  const clientId = localStorage.getItem('spotify_client_id');
-  const clientSecret = localStorage.getItem('spotify_client_secret');
+  const clientId = getConfig('VITE_SPOTIFY_CLIENT_ID');
+  const clientSecret = getConfig('VITE_SPOTIFY_CLIENT_SECRET');
   
   if (!clientId || !clientSecret) {
     throw new SpotifyApiError(
-      'Spotify credentials not configured. Please add your Client ID and Client Secret in Settings.',
+      'Spotify credentials not configured. Please set VITE_SPOTIFY_CLIENT_ID and VITE_SPOTIFY_CLIENT_SECRET environment variables.',
       401,
       'CREDENTIALS_MISSING'
     );

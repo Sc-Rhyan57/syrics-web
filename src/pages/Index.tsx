@@ -4,7 +4,7 @@ import { Settings, Library } from "lucide-react";
 import Logo from "@/components/Logo";
 import SearchBar from "@/components/SearchBar";
 import SettingsDialog from "@/components/SettingsDialog";
-import AuthModal from "@/components/AuthModal";
+// import AuthModal from "@/components/AuthModal";
 import LibraryPanel from "@/components/LibraryPanel";
 import { AutocompleteSuggestion } from "@/types/spotify";
 import { 
@@ -100,8 +100,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Auth Modal - shown when not authenticated */}
-      <AuthModal open={!authLoading && !isAuthenticated} />
+      {/* Auth Modal - temporarily disabled as Spotify has halted user account authentication */}
+      {/* <AuthModal open={!authLoading && !isAuthenticated} /> */}
       
       {/* Subtle background gradient */}
       <div className="fixed inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />

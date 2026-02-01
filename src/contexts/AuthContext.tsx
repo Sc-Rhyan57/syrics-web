@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, useCallback, ReactNode } from 'react';
 import { AuthState } from '@/types/spotify';
+import { getConfig } from '@/lib/config';
 import {
   initializeOAuthFromStorage,
   isOAuthAuthenticated,
@@ -72,14 +73,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           });
           setServiceAuthMode('oauth');
         } else {
-          // Check if client credentials are configured
-          const hasClientCreds = localStorage.getItem('spotify_client_id') && 
-                                 localStorage.getItem('spotify_client_secret');
+          // Check if client credentials are configured in environment
+          const hasClientCreds = !!getConfig('VITE_SPOTIFY_CLIENT_ID') && 
+                                 !!getConfig('VITE_SPOTIFY_CLIENT_SECRET');
           
           setAuthState({
             ...defaultAuthState,
             mode: 'client-credentials',
-            isAuthenticated: !!hasClientCreds,
+            isAuthenticated: hasClientCreds,
           });
         }
       } catch (err) {

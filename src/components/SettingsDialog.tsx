@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X, LogOut } from "lucide-react";
+import { X } from "lucide-react"; // LogOut removed - auth temporarily disabled
 import {
   Dialog,
   DialogContent,
@@ -43,25 +43,26 @@ const DEFAULT_API_BASE = "http://localhost:8080";
 
 const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
   const { settings, updateSettings } = useSettings();
-  const { authState, logout } = useAuth();
+  const { authState } = useAuth(); // logout removed - auth temporarily disabled
   const [showTokenMenu, setShowTokenMenu] = useState(false);
 
   const handleLyricsTypeChange = (type: LyricsFormat) => {
     updateSettings({ ...settings, lyricsType: type });
   };
 
-  const handleLogout = () => {
-    // Clear OAuth tokens
-    logout();
-
-    // Clear client credentials
-    localStorage.removeItem("spotify_client_id");
-    localStorage.removeItem("spotify_client_secret");
-
-    // Close dialog and navigate to home
-    onOpenChange(false);
-    window.location.href = "/";
-  };
+  // handleLogout temporarily disabled as Spotify has halted user account authentication
+  // const handleLogout = () => {
+  //   // Clear OAuth tokens
+  //   logout();
+  //
+  //   // Clear client credentials
+  //   localStorage.removeItem("spotify_client_id");
+  //   localStorage.removeItem("spotify_client_secret");
+  //
+  //   // Close dialog and navigate to home
+  //   onOpenChange(false);
+  //   window.location.href = "/";
+  // };
 
   const handleAddToken = (token: string) => {
     updateSettings({
@@ -253,8 +254,8 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
             </p>
           </div>
 
-          {/* Account Section */}
-          {authState.isAuthenticated && (
+          {/* Account Section - temporarily disabled as Spotify has halted user account authentication */}
+          {/* {authState.isAuthenticated && (
             <div className="space-y-3 pt-4 border-t">
               <h4 className="text-sm font-medium">Account</h4>
               {authState.user && (
@@ -289,7 +290,7 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
                 This will sign you out and remove all saved credentials.
               </p>
             </div>
-          )}
+          )} */}
         </div>
       </DialogContent>
     </Dialog>
